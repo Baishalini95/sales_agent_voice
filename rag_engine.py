@@ -6,6 +6,9 @@ import pickle
 from sentence_transformers import SentenceTransformer
 import re
 
+INDEX_FILE = 'faiss_index.bin'
+CHUNKS_FILE = 'chunks_metadata.pkl'
+
 class RAGEngine:
     def __init__(self):
         print("Initializing RAG Engine...")
@@ -13,8 +16,13 @@ class RAGEngine:
         self.chunks = []
         self.index = None
         self.chunk_metadata = []
-        self.load_pdfs()
-        print(f"Loaded {len(self.chunks)} chunks from PDFs")
+        if os.path.exists(INDEX_FILE) and os.path.exists(CHUNKS_FILE):
+            print("Loading pre-built index from disk...")
+            self._load_index()
+        else:
+            self.load_pdfs()
+            self._save_index()
+        print(f"Loaded {len(self.chunks)} chunks")
     
     def extract_pdf_text(self, pdf_path):
         text = ""
@@ -57,6 +65,18 @@ class RAGEngine:
         
         return [chunk for chunk in chunks if len(chunk) > 100]
     
+    def _save_index(self):
+        faiss.write_index(self.index, INDEX_FILE)
+        with open(CHUNKS_FILE, 'wb') as f:
+            pickle.dump((self.chunks, self.chunk_metadata), f)
+        print("Index saved to disk.")
+
+    def _load_index(self):
+        self.index = faiss.read_index(INDEX_FILE)
+        with open(CHUNKS_FILE, 'rb') as f:
+            self.chunks, self.chunk_metadata = pickle.load(f)
+        print(f"Index loaded: {self.index.ntotal} vectors")
+
     def load_pdfs(self):
         all_chunks = []
         all_metadata = []
