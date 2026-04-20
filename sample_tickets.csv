@@ -1,0 +1,11 @@
+id,name,email,reason,priority,status,assigned_to,created_at,updated_at
+TKT-A1B2C3D4,Alice Cooper,alice.cooper@company.com,System login issues - unable to access dashboard,High,In Progress,Security Team,2025-01-13 09:00:00,2025-01-13 10:30:00
+TKT-E5F6G7H8,Bob Martinez,bob.martinez@tech.com,Request for new feature implementation,Medium,Open,SME Team,2025-01-13 09:30:00,2025-01-13 09:30:00
+TKT-I9J0K1L2,Carol White,carol.white@startup.com,Database connection timeout errors,Critical,Resolved,Cloud Team,2025-01-13 08:15:00,2025-01-13 14:20:00
+TKT-M3N4O5P6,Daniel Green,daniel.green@corp.com,General inquiry about service pricing,Low,Closed,Unassigned,2025-01-13 11:00:00,2025-01-13 12:00:00
+TKT-Q7R8S9T0,Eva Rodriguez,eva.rodriguez@dev.com,Server downtime affecting production,Critical,In Progress,Emergency Team,2025-01-13 07:45:00,2025-01-13 08:00:00
+TKT-U1V2W3X4,Frank Thompson,frank.t@solutions.com,API integration documentation missing,Medium,Open,SME Team,2025-01-13 10:15:00,2025-01-13 10:15:00
+TKT-Y5Z6A7B8,Grace Kim,grace.kim@agency.com,Performance optimization request,Low,Open,Cloud Team,2025-01-13 12:30:00,2025-01-13 12:30:00
+TKT-C9D0E1F2,Henry Adams,henry.adams@enterprise.com,Security vulnerability report,High,In Progress,Security Team,2025-01-13 13:00:00,2025-01-13 15:45:00
+TKT-G3H4I5J6,Iris Johnson,iris.johnson@tech.com,Data migration assistance needed,Medium,Resolved,Cloud Team,2025-01-13 14:00:00,2025-01-13 16:30:00
+TKT-K7L8M9N0,Jack Wilson,jack.wilson@startup.com,Account access permissions issue,High,Open,Security Team,2025-01-13 15:30:00,2025-01-13 15:30:00

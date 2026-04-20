@@ -1,0 +1,29 @@
+ID,Name,Email,Challenge,Rating,Query,Response,Date
+c17545aa,John Smith,john.smith@email.com,Unable to find relevant information about cloud services,3,What are the available cloud services?,I found some information about cloud services in our documentation. Here are the main services we offer...,2025-09-07 13:46:53
+fc78c05c,Sarah Johnson,sarah.j@company.com,The AI response was not accurate for my technical query,2,How do I configure SSL certificates?,Based on the documentation I found information about SSL certificate configuration...,2025-09-07 13:46:53
+201c30f9,Mike Davis,mike.davis@tech.com,Great response! Very helpful and detailed,5,What is the backup policy?,Our backup policy includes daily automated backups with 30-day retention...,2025-09-07 13:46:53
+c2adebc8,Lisa Chen,lisa.chen@startup.com,Response was okay but could be more specific,4,How to set up monitoring?,Here's how to set up monitoring for your applications...,2025-09-07 13:46:53
+5049c81b,Robert Wilson,r.wilson@corp.com,The chatbot didn't understand my question properly,2,What are the security best practices?,I found several security best practices in our documentation...,2025-09-07 13:46:53
+ce9d129c,Emma Brown,emma.brown@dev.com,Excellent service! Got exactly what I needed,5,How to deploy applications?,Here's a step-by-step guide for application deployment...,2025-09-07 13:46:53
+0f061738,David Lee,david.lee@solutions.com,Response was helpful but took too long to get,3,What is the pricing model?,Our pricing model is based on usage and includes several tiers...,2025-09-07 13:46:53
+354058cb,Jennifer Taylor,jen.taylor@agency.com,Perfect answer! Solved my problem immediately,5,How to integrate APIs?,Here's how to integrate with our APIs including authentication...,2025-09-07 13:46:53
+c1a064f8,shalini,baishalini.sahu@softtek.com,i loved it,4,External user creation steps for it ?,"Based on the documentation:
+
+Requester can see the ITEM comment in access request, not the approval comment (unless requester goes to the Work Item for “Owner Approval - Account Changes for User: -requester name-”) 2.6.2 External user creation: Managers can create identities for externals either they are contractors or partners.
+
+Fill the fields as necessary with user information like, user type, external email, manager, name, lastname, etc.
+
+Option “Contractor” is for external collaborators working in Dufry areas.
+
+(Source: ibm.pdf, End users - SailPoint Identity and Access Management (IAM) User Guide _ ServiceNow.pdf)",2025-08-13 13:49:42
+90b145d2,shalini,baishalini.sahu@softtek.com,vpn issues,1,Troubleshooting Electronic Service Agent,"Based on the documentation:
+
+Service and support overview Electronic Service Agent overview Electronic Service Agent is an IBM i function that collects system inventory for software and hardware and provides an automatic problem-reporting function.
+
+Electronic Service Agent automatically submits problems to IBM when appropriate.
+
+Related concepts Electronic Service Agent Electronic Service Agent provides an automatic problem-reporting function.
+
+(Source: ibm.pdf)",2025-08-13 11:14:19
+63c8bde4,Test User,test@example.com,Testing the feedback system,5,Test query,Test response,2025-08-13 11:13:14
+987f2109,Test User,test@example.com,Testing the feedback system,5,Test query,Test response,2025-08-13 11:13:01

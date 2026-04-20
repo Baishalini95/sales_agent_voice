@@ -1,0 +1,9 @@
+id,name,email,challenge,satisfaction_rating,query,response,created_at
+fb001,John Smith,john.smith@email.com,Unable to find relevant information about cloud services,3,What are the available cloud services?,I found some information about cloud services in our documentation. Here are the main services we offer...,2025-01-13 10:30:00
+fb002,Sarah Johnson,sarah.j@company.com,The AI response was not accurate for my technical query,2,How do I configure SSL certificates?,Based on the documentation I found information about SSL certificate configuration...,2025-01-13 11:15:00
+fb003,Mike Davis,mike.davis@tech.com,Great response! Very helpful and detailed,5,What is the backup policy?,Our backup policy includes daily automated backups with 30-day retention...,2025-01-13 12:00:00
+fb004,Lisa Chen,lisa.chen@startup.com,Response was okay but could be more specific,4,How to set up monitoring?,Here's how to set up monitoring for your applications...,2025-01-13 13:45:00
+fb005,Robert Wilson,r.wilson@corp.com,The chatbot didn't understand my question properly,2,What are the security best practices?,I found several security best practices in our documentation...,2025-01-13 14:20:00
+fb006,Emma Brown,emma.brown@dev.com,Excellent service! Got exactly what I needed,5,How to deploy applications?,Here's a step-by-step guide for application deployment...,2025-01-13 15:10:00
+fb007,David Lee,david.lee@solutions.com,Response was helpful but took too long to get,3,What is the pricing model?,Our pricing model is based on usage and includes several tiers...,2025-01-13 16:00:00
+fb008,Jennifer Taylor,jen.taylor@agency.com,Perfect answer! Solved my problem immediately,5,How to integrate APIs?,Here's how to integrate with our APIs including authentication...,2025-01-13 16:45:00

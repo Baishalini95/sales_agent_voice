@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Sentiment Analysis & Voice Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="header-content">
+                <h1><i class="fas fa-database"></i> Admin Dashboard</h1>
+                <p>Sentiment Analysis & Voice Assistant</p>
+                <a href="/" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Chat
+                </a>
+            </div>
+        </header>
+
+        <div class="tab-navigation">
+            <button class="tab-btn active" data-tab="feedback">
+                <i class="fas fa-comments"></i> Feedback
+            </button>
+            <button class="tab-btn" data-tab="tickets">
+                <i class="fas fa-ticket-alt"></i> Tickets
+            </button>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <i class="fas fa-comments"></i>
+                <div class="stat-info">
+                    <h3 id="totalFeedback">0</h3>
+                    <p>Total Feedback</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-ticket-alt"></i>
+                <div class="stat-info">
+                    <h3 id="totalTickets">0</h3>
+                    <p>Total Tickets</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-star"></i>
+                <div class="stat-info">
+                    <h3 id="avgRating">0</h3>
+                    <p>Average Rating</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <div class="stat-info">
+                    <h3 id="todayCount">0</h3>
+                    <p id="todayLabel">Today's Items</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <div class="search-controls">
+                <input type="text" id="searchInput" placeholder="Search by name, email, or challenge...">
+                <button id="refreshBtn" class="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+            <div class="filter-controls">
+                <select id="ratingFilter">
+                    <option value="">All Ratings</option>
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="2">2 Stars</option>
+                    <option value="1">1 Star</option>
+                </select>
+                <select id="dateFilter">
+                    <option value="">All Dates</option>
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Feedback Table -->
+        <div class="table-section" id="feedbackSection">
+            <div class="table-header">
+                <h2>Feedback Details</h2>
+                <div class="table-actions">
+                    <button id="exportBtn" class="export-btn">
+                        <i class="fas fa-download"></i> Export CSV
+                    </button>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table id="feedbackTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Challenge</th>
+                            <th>Rating</th>
+                            <th>Query</th>
+                            <th>Response</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedbackTableBody">
+                        <tr class="loading-row">
+                            <td colspan="9">
+                                <div class="loading-spinner">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    Loading feedback data...
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tickets Table -->
+        <div class="table-section" id="ticketsSection" style="display: none;">
+            <div class="table-header">
+                <h2>Ticket Management</h2>
+                <div class="table-actions">
+                    <button id="exportTicketsBtn" class="export-btn">
+                        <i class="fas fa-download"></i> Export CSV
+                    </button>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table id="ticketsTable">
+                    <thead>
+                        <tr>
+                            <th>Ticket ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Reason</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Assigned To</th>
+                            <th>Created</th>
+                            <th>Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ticketsTableBody">
+                        <tr class="loading-row">
+                            <td colspan="10">
+                                <div class="loading-spinner">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    Loading tickets data...
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="detail-modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle"><i class="fas fa-info-circle"></i> Details</h3>
+                <button class="close-modal" id="closeDetailModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>

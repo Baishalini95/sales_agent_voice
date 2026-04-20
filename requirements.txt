@@ -1,0 +1,7 @@
+flask
+transformers
+torch
+sentence-transformers
+faiss-cpu
+PyPDF2
+flask-cors

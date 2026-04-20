@@ -1,0 +1,16 @@
+name,email,challenge,satisfaction_rating,department,created_at
+John Smith,john@company.com,Cloud server keeps crashing and losing data,2,cloud,15-01-2024
+Sarah Johnson,sarah@tech.com,Software application freezing during important tasks,1,software,14-01-2024
+Mike Davis,mike@corp.com,Hardware device not responding properly,3,hardware,13-01-2024
+Lisa Chen,lisa@business.com,Security breach concerns with login system,1,security,12-01-2024
+Tom Wilson,tom@startup.com,Service response time is extremely slow,2,service,11-01-2024
+Emma Brown,emma@agency.com,Cloud storage sync issues affecting workflow,3,cloud,10-01-2024
+Alex Garcia,alex@firm.com,Software bugs causing system errors,1,software,09-01-2024
+Rachel White,rachel@group.com,IT team delayed hardware replacement,2,hardware,08-01-2024
+David Lee,david@solutions.com,Security team needs better threat detection,4,security,07-01-2024
+Jennifer Taylor,jen@consulting.com,Slow service affecting client meetings,2,service,06-01-2024
+Mark Anderson,mark@enterprise.com,Excellent cloud performance and reliability,5,cloud,05-01-2024
+Kelly Martinez,kelly@digital.com,Great software update with new features,4,software,04-01-2024
+Chris Thompson,chris@tech.com,Hardware upgrade went smoothly,4,hardware,03-01-2024
+Amanda Rodriguez,amanda@corp.com,Cloud  system are working perfectly,5,cloud,02-01-2024
+Brian Clark,brian@company.com,Service quality has improved significantly,4,service,01-01-2024

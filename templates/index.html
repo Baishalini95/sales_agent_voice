@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis & Voice Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='avatar.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Main page content -->
+    <div class="main-content">
+        <header class="page-header">
+            <h1>Sentiment Analysis & Voice Assistant</h1>
+            <p>Intelligent support system with advanced sentiment analysis and voice capabilities</p>
+        </header>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-ticket-alt"></i>
+                <h3>AI Ticket Solving</h3>
+                <p>Intelligent ticket management with automated routing and resolution</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Feedback Analysis</h3>
+                <p>Advanced sentiment analysis and satisfaction tracking</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-bar"></i>
+                <h3>Data Analysis</h3>
+                <p>Comprehensive data visualization and reporting insights</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-robot"></i>
+                <h3>24/7 Available</h3>
+                <p>Always ready to help with your document queries</p>
+            </div>
+        </div>
+        
+        <div class="admin-section">
+            <div class="admin-row">
+                <div class="admin-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Database Viewer</h3>
+                    <p>View submitted feedback and ticket details</p>
+                    <a href="/admin" class="admin-btn">
+                        <i class="fas fa-eye"></i> View Database
+                    </a>
+                </div>
+                <div class="admin-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Sentiment Analysis</h3>
+                    <p>Analyze data patterns and visualize insights</p>
+                    <button class="admin-btn" onclick="openSentimentModal()">
+                        <i class="fas fa-analytics"></i> Analyze Data
+                    </button>
+                </div>
+                <div class="admin-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Data Gathering</h3>
+                    <p>Multi-channel customer interaction management</p>
+                    <button class="admin-btn" onclick="openDataGatheringModal()">
+                        <i class="fas fa-headset"></i> View Agents
+                    </button>
+                </div>
+                <div class="admin-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Sales Agents</h3>
+                    <p>AI-powered inbound and outbound sales management</p>
+                    <button class="admin-btn" onclick="openSalesAgentsModal()">
+                        <i class="fas fa-phone-alt"></i> Sales Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Gathering Modal -->
+        <div class="data-gathering-modal" id="dataGatheringModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-users"></i> Data Gathering - Agent Dashboard</h3>
+                    <button class="close-modal" onclick="closeDataGatheringModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="agents-grid">
+                        <div class="agent-card">
+                            <div class="agent-header">
+                                <i class="fas fa-phone"></i>
+                                <h4>Call Agent</h4>
+                            </div>
+                            <p>Handle customer queries via Phone Calls</p>
+                            <button class="activate-btn" onclick="activateAgent('call', this)">Activate</button>
+                        </div>
+                        
+                        <div class="agent-card">
+                            <div class="agent-header">
+                                <i class="fas fa-comments"></i>
+                                <h4>Chat Agent</h4>
+                            </div>
+                            <p>Handle customer queries via Live Chat</p>
+                            <button class="activate-btn" onclick="activateAgent('chat', this)">Activate</button>
+                        </div>
+                        
+                        <div class="agent-card">
+                            <div class="agent-header">
+                                <i class="fas fa-envelope"></i>
+                                <h4>Email Agent</h4>
+                            </div>
+                            <p>Handle customer queries via Email</p>
+                            <button class="activate-btn" onclick="activateAgent('email', this)">Activate</button>
+                        </div>
+                        
+
+                    </div>
+                    
+                    <div class="database-section">
+                        <h4><i class="fas fa-database"></i> Customer Interactions Database</h4>
+                        <div class="database-controls">
+                            <input type="text" placeholder="Search by tracking number, customer..." class="search-input">
+                            <button class="clear-btn">Clear All</button>
+                        </div>
+                        <div class="database-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Channel</th>
+                                        <th>Customer</th>
+                                        <th>Contact</th>
+                                        <th>Query Type</th>
+                                        <th>Tracking #</th>
+                                        <th>Message</th>
+                                        <th>Status</th>
+                                        <th>Timestamp</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>EMAIL-0001</td>
+                                        <td><span class="channel-badge email">EMAIL</span></td>
+                                        <td>Lidesh</td>
+                                        <td>lidesh@gmail.com</td>
+                                        <td>DELIVERY ISSUE</td>
+                                        <td>#45787097698</td>
+                                        <td>why my shipment - #45787097698...</td>
+                                        <td><span class="status-badge responded">RESPONDED</span></td>
+                                        <td>15/10/2025, 4:03:16 pm</td>
+                                        <td><button class="view-btn">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CHAT-0002</td>
+                                        <td><span class="channel-badge chat">CHAT</span></td>
+                                        <td>Sarah Johnson</td>
+                                        <td>sarah.j@company.com</td>
+                                        <td>TRACKING</td>
+                                        <td>#98765432</td>
+                                        <td>Need ETA for my order...</td>
+                                        <td><span class="status-badge pending">PENDING</span></td>
+                                        <td>15/10/2025, 3:45:22 pm</td>
+                                        <td><button class="view-btn">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CALL-0003</td>
+                                        <td><span class="channel-badge call">CALL</span></td>
+                                        <td>Mike Davis</td>
+                                        <td>+1-555-0123</td>
+                                        <td>COMPLAINT</td>
+                                        <td>#12345678</td>
+                                        <td>Package damaged on arrival...</td>
+                                        <td><span class="status-badge resolved">RESOLVED</span></td>
+                                        <td>15/10/2025, 2:30:15 pm</td>
+                                        <td><button class="view-btn">View</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sentiment Analysis Modal -->
+        <div class="sentiment-modal" id="sentimentModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-chart-line"></i> Sentiment Analysis & Data Visualization</h3>
+                    <button class="close-modal" onclick="closeSentimentModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="data-source-selection">
+                        <h4>Select Data Source</h4>
+                        <div class="source-buttons">
+                            <button class="source-btn" onclick="selectDataSource('current')">
+                                <i class="fas fa-database"></i>
+                                <span>Current Database</span>
+                                <small>Analyze existing feedback & tickets</small>
+                            </button>
+                            <button class="source-btn" onclick="selectDataSource('external')">
+                                <i class="fas fa-file-upload"></i>
+                                <span>External Data</span>
+                                <small>Upload CSV or Excel file</small>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="data-content" id="dataContent" style="display: none;">
+                        <!-- Content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales Agents Modal -->
+        <div class="data-gathering-modal" id="salesAgentsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-user-tie"></i> Sales Agents Dashboard</h3>
+                    <button class="close-modal" onclick="closeSalesAgentsModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="agents-grid">
+                        <div class="agent-card">
+                            <div class="agent-header">
+                                <i class="fas fa-arrow-down"></i>
+                                <h4>Inbound Agent</h4>
+                            </div>
+                            <p>Handle incoming customer requests</p>
+                            <button class="activate-btn" onclick="activateAgent('inbound', this)">Activate</button>
+                        </div>
+                        
+                        <div class="agent-card">
+                            <div class="agent-header">
+                                <i class="fas fa-arrow-up"></i>
+                                <h4>Outbound Agent</h4>
+                            </div>
+                            <p>Proactive customer outreach</p>
+                            <button class="activate-btn" onclick="activateAgent('outbound', this)">Activate</button>
+                        </div>
+                    </div>
+                    
+                    <div class="knowledge-base-section">
+                        <h4><i class="fas fa-brain"></i> Sales Knowledge Base</h4>
+                        <div class="knowledge-controls">
+                            <button class="clear-kb-btn" onclick="clearKnowledgeBase()">Clear All</button>
+                        </div>
+                        <div class="knowledge-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Channel</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Company</th>
+                                        <th>Preferred Time</th>
+                                        <th>Interest Level</th>
+                                        <th>Timestamp</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="knowledgeBaseTable">
+                                    <!-- Meeting data will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget" id="chatbotWidget">
+        <!-- Chat Toggle Button -->
+        <div class="chat-toggle" id="chatToggle">
+            <i class="fas fa-comments"></i>
+            <span class="notification-badge" id="notificationBadge">1</span>
+        </div>
+
+        <!-- Chat Window -->
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Support Bot</span>
+                </div>
+                <div class="chat-controls">
+                    <span class="status-dot online"></span>
+                    <button class="maximize-btn" id="maximizeBtn" title="Maximize">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                    <button class="minimize-btn" id="minimizeBtn" title="Minimize">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button class="close-btn" onclick="closeChatbot()" title="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Hi! I'm your AI support assistant. I can help you with queries and guide you through our ticket and feedback system.</p>
+                        <div class="quick-suggestions">
+                            <button class="suggestion-btn" onclick="sendQuickMessage('What documents do you have?')">
+                                Available Documents
+                            </button>
+                            <button class="suggestion-btn" onclick="sendQuickMessage('How does this work?')">
+                                How it works
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <div class="input-container">
+                    <input type="text" id="messageInput" placeholder="Ask me anything..." maxlength="300">
+                    <button id="sendButton" class="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="input-footer">
+                    <span class="char-count" id="charCount">0/300</span>
+                    <span class="powered-by">Powered by RAG + LLM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticket Modal -->
+    <div class="ticket-modal" id="ticketModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Raise New Ticket</h3>
+                <button class="close-modal" id="closeTicketModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="ticketForm">
+                    <div class="form-group">
+                        <label for="ticketName">Name *</label>
+                        <input type="text" id="ticketName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="ticketEmail">Email *</label>
+                        <input type="email" id="ticketEmail" required placeholder="Enter your email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="ticketReason">Reason/Challenge *</label>
+                        <textarea id="ticketReason" required placeholder="Describe your issue or request" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticketPriority">Priority Level *</label>
+                        <select id="ticketPriority" required>
+                            <option value="">Select Priority</option>
+                            <option value="Low">Low - General inquiry</option>
+                            <option value="Medium">Medium - Standard issue</option>
+                            <option value="High">High - Urgent matter</option>
+                            <option value="Critical">Critical - System down</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" id="cancelTicket">Cancel</button>
+                        <button type="submit" class="btn-submit">Submit Ticket</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="feedback-modal" id="feedbackModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-ticket-alt"></i> Close Ticket - Feedback</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="feedbackName">Name *</label>
+                        <input type="text" id="feedbackName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackEmail">Email *</label>
+                        <input type="email" id="feedbackEmail" required placeholder="Enter your email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackChallenge">Challenge/Issue *</label>
+                        <textarea id="feedbackChallenge" required placeholder="Describe the challenge or issue you faced" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>How satisfied are you with the answer? *</label>
+                        <div class="satisfaction-rating">
+                            <input type="radio" id="rating1" name="satisfaction" value="1">
+                            <label for="rating1">😞 Very Unsatisfied</label>
+                            
+                            <input type="radio" id="rating2" name="satisfaction" value="2">
+                            <label for="rating2">😐 Unsatisfied</label>
+                            
+                            <input type="radio" id="rating3" name="satisfaction" value="3">
+                            <label for="rating3">😊 Neutral</label>
+                            
+                            <input type="radio" id="rating4" name="satisfaction" value="4">
+                            <label for="rating4">😄 Satisfied</label>
+                            
+                            <input type="radio" id="rating5" name="satisfaction" value="5">
+                            <label for="rating5">🤩 Very Satisfied</label>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" id="cancelFeedback">Cancel</button>
+                        <button type="submit" class="btn-submit">Submit Feedback</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Feedback Modal -->
+    <div class="feedback-modal" id="chatbotFeedbackModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-comments"></i> Chatbot Feedback</h3>
+                <button class="close-modal" onclick="closeChatbotFeedback()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="submitChatbotFeedback(event)">
+                    <div class="form-group">
+                        <label>How was your chatbot experience?</label>
+                        <div class="rating-stars">
+                            <span onclick="setRating(1)" class="star">⭐</span>
+                            <span onclick="setRating(2)" class="star">⭐</span>
+                            <span onclick="setRating(3)" class="star">⭐</span>
+                            <span onclick="setRating(4)" class="star">⭐</span>
+                            <span onclick="setRating(5)" class="star">⭐</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="chatbotFeedbackText">Tell us about your experience</label>
+                        <textarea id="chatbotFeedbackText" placeholder="Your feedback..." rows="4"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="closeChatbotFeedback()">Cancel</button>
+                        <button type="submit" class="btn-submit">Submit Feedback</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Enhanced chatbot functionality
+        let chatHistory = [];
+        
+        function sendQuickMessage(message) {
+            addUserMessage(message);
+            handleBotResponse(message);
+        }
+        
+        function addUserMessage(message) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user-message';
+            userMsg.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="message-content">
+                    <p>${message}</p>
+                </div>
+            `;
+            messagesContainer.appendChild(userMsg);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function addBotMessage(message, showTicketOption = false) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const botMsg = document.createElement('div');
+            botMsg.className = 'message bot-message';
+            
+            let ticketButton = '';
+            if (showTicketOption) {
+                ticketButton = `
+                    <div class="ticket-buttons">
+                        <button class="raise-ticket-btn" onclick="openTicketModal()">
+                            <i class="fas fa-plus-circle"></i> Raise Ticket
+                        </button>
+                    </div>
+                `;
+            }
+            
+            botMsg.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>${message}</p>
+                    ${ticketButton}
+                </div>
+            `;
+            messagesContainer.appendChild(botMsg);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        async function handleBotResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            if (msg.includes('ticket') || msg.includes('create') || msg.includes('raise')) {
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addBotMessage('I can help you create a ticket! What type of issue are you experiencing? (networking, quality, software, security, or other)');
+                }, 1000);
+            } else if (msg.includes('networking') || msg.includes('network')) {
+                const response = await getAIResponse('networking issue troubleshooting steps');
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addBotMessage(response, true);
+                }, 2000);
+            } else if (msg.includes('quality') || msg.includes('performance')) {
+                const response = await getAIResponse('quality and performance issue solutions');
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addBotMessage(response, true);
+                }, 2000);
+            } else if (msg.includes('software') || msg.includes('application')) {
+                const response = await getAIResponse('software application troubleshooting guide');
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addBotMessage(response, true);
+                }, 2000);
+            } else if (msg.includes('security') || msg.includes('virus')) {
+                const response = await getAIResponse('cybersecurity and virus protection steps');
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addBotMessage(response, true);
+                }, 2000);
+            } else if (msg.includes('how') && msg.includes('work')) {
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addBotMessage('Our AI-powered system helps you manage tickets and feedback efficiently. You can create tickets, track progress, and get instant support. What specific help do you need?');
+                }, 1000);
+            } else if (msg.includes('document')) {
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addBotMessage('I have access to technical documentation and troubleshooting guides. What type of issue are you facing? I can provide specific solutions.');
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addBotMessage('How can I help you today? I can assist with:\n• Networking issues\n• Quality/Performance problems\n• Software troubleshooting\n• Security concerns\n• Creating support tickets\n\nWhat would you like help with?');
+                }, 1000);
+            }
+        }
+        
+        async function getAIResponse(query) {
+            try {
+                const response = await fetch('/api/ai-help', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query: query })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.response + '\n\nIf you need further assistance, please raise a ticket for personalized support.';
+                } else {
+                    return getDefaultResponse(query);
+                }
+            } catch (error) {
+                return getDefaultResponse(query);
+            }
+        }
+        
+        function getDefaultResponse(query) {
+            if (query.includes('networking')) {
+                return `Here are some networking troubleshooting steps:\n\n• Check cable connections\n• Restart your router/modem\n• Verify IP configuration\n• Test with different devices\n• Check for interference\n• Update network drivers\n\nIf the issue persists, please raise a ticket for expert assistance.`;
+            } else if (query.includes('quality')) {
+                return `Quality improvement suggestions:\n\n• Check system resources (CPU, RAM)\n• Close unnecessary applications\n• Update software/drivers\n• Clear cache and temporary files\n• Check for malware\n• Optimize startup programs\n\nFor detailed analysis, please raise a ticket.`;
+            } else if (query.includes('software')) {
+                return `Software troubleshooting steps:\n\n• Restart the application\n• Check for updates\n• Run as administrator\n• Clear application cache\n• Reinstall if necessary\n• Check system compatibility\n\nNeed more help? Please raise a ticket.`;
+            } else if (query.includes('security')) {
+                return `Security protection measures:\n\n• Keep software updated\n• Use strong passwords\n• Enable firewall\n• Regular antivirus scans\n• Avoid suspicious links\n• Backup important data\n\nFor security concerns, please raise a ticket immediately.`;
+            }
+            return 'I can help you with technical issues. Please describe your problem or raise a ticket for personalized support.';
+        }
+        
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing-indicator';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+        
+        function openTicketModal() {
+            document.getElementById('ticketModal').classList.add('show');
+        }
+        
+        // Enhanced message input handling
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const message = this.value.trim();
+                if (message) {
+                    addUserMessage(message);
+                    handleBotResponse(message);
+                    this.value = '';
+                }
+            }
+        });
+        
+        document.getElementById('sendButton').addEventListener('click', function() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (message) {
+                addUserMessage(message);
+                handleBotResponse(message);
+                input.value = '';
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function openDataGatheringModal() {
+            document.getElementById('dataGatheringModal').classList.add('show');
+        }
+        
+        function closeDataGatheringModal() {
+            document.getElementById('dataGatheringModal').classList.remove('show');
+        }
+        
+        function createCallData(button) {
+            const card = button.closest('.agent-card');
+            const complaint = card.querySelector('textarea').value.trim();
+            const contact = card.querySelector('input[placeholder="Contact Number"]').value.trim();
+            const userId = card.querySelector('input[placeholder="User ID"]').value.trim();
+            
+            if (!complaint || !contact || !userId) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            const tableBody = document.querySelector('.database-table tbody');
+            const newId = 'CALL-' + String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+            const timestamp = new Date().toLocaleString();
+            
+            const newRow = `
+                <tr>
+                    <td>${newId}</td>
+                    <td><span class="channel-badge call">CALL</span></td>
+                    <td>Customer</td>
+                    <td>${contact}</td>
+                    <td>COMPLAINT</td>
+                    <td>${userId}</td>
+                    <td>${complaint}</td>
+                    <td><span class="status-badge pending">PENDING</span></td>
+                    <td>${timestamp}</td>
+                    <td><button class="view-btn">View</button></td>
+                </tr>
+            `;
+            
+            tableBody.insertAdjacentHTML('afterbegin', newRow);
+            
+            // Clear form
+            card.querySelector('textarea').value = '';
+            card.querySelector('input[placeholder="Contact Number"]').value = '';
+            card.querySelector('input[placeholder="User ID"]').value = '';
+            
+            alert('Call data created successfully!');
+        }
+        
+        function createChatData(button) {
+            const card = button.closest('.agent-card');
+            const complaint = card.querySelector('textarea').value.trim();
+            const contact = card.querySelector('input[placeholder="Contact Number"]').value.trim();
+            const userId = card.querySelector('input[placeholder="User ID"]').value.trim();
+            
+            if (!complaint || !contact || !userId) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            addToTable('CHAT', complaint, contact, userId, 'CHAT');
+            clearForm(card);
+            alert('Chat data created successfully!');
+        }
+        
+        function createEmailData(button) {
+            const card = button.closest('.agent-card');
+            const complaint = card.querySelector('textarea').value.trim();
+            const email = card.querySelector('input[placeholder="Email Address"]').value.trim();
+            const userId = card.querySelector('input[placeholder="User ID"]').value.trim();
+            
+            if (!complaint || !email || !userId) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            addToTable('EMAIL', complaint, email, userId, 'EMAIL');
+            clearForm(card);
+            alert('Email data created successfully!');
+        }
+        
+        function createInboundData(button) {
+            const card = button.closest('.agent-card');
+            const complaint = card.querySelector('textarea').value.trim();
+            const contact = card.querySelector('input[placeholder="Contact Number"]').value.trim();
+            const userId = card.querySelector('input[placeholder="User ID"]').value.trim();
+            
+            if (!complaint || !contact || !userId) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            addToTable('INBOUND', complaint, contact, userId, 'INBOUND');
+            clearForm(card);
+            alert('Inbound data created successfully!');
+        }
+        
+        function createOutboundData(button) {
+            const card = button.closest('.agent-card');
+            const complaint = card.querySelector('textarea').value.trim();
+            const contact = card.querySelector('input[placeholder="Contact Number"]').value.trim();
+            const userId = card.querySelector('input[placeholder="User ID"]').value.trim();
+            
+            if (!complaint || !contact || !userId) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            addToTable('OUTBOUND', complaint, contact, userId, 'OUTBOUND');
+            clearForm(card);
+            alert('Outbound data created successfully!');
+        }
+        
+        function addToTable(type, complaint, contact, userId, channel) {
+            const tableBody = document.querySelector('.database-table tbody');
+            const newId = type + '-' + String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+            const timestamp = new Date().toLocaleString();
+            
+            const newRow = `
+                <tr>
+                    <td>${newId}</td>
+                    <td><span class="channel-badge ${channel.toLowerCase()}">${channel}</span></td>
+                    <td>Customer</td>
+                    <td>${contact}</td>
+                    <td>COMPLAINT</td>
+                    <td>${userId}</td>
+                    <td>${complaint}</td>
+                    <td><span class="status-badge pending">PENDING</span></td>
+                    <td>${timestamp}</td>
+                    <td><button class="view-btn">View</button></td>
+                </tr>
+            `;
+            
+            tableBody.insertAdjacentHTML('afterbegin', newRow);
+        }
+        
+        function clearForm(card) {
+            card.querySelector('textarea').value = '';
+            const inputs = card.querySelectorAll('input');
+            inputs.forEach(input => input.value = '');
+        }
+        
+        function sendChatMessage(button) {
+            const chatInterface = button.closest('.chat-interface');
+            const input = chatInterface.querySelector('.chat-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-message user-msg';
+            userMsg.innerHTML = `<i class="fas fa-user"></i><span>${message}</span>`;
+            userMsg.style.background = '#e0f2fe';
+            
+            chatInterface.insertBefore(userMsg, chatInterface.querySelector('.chat-input-area'));
+            
+            // Add bot response
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chat-message bot-msg';
+                botMsg.innerHTML = `<i class="fas fa-robot"></i><span>Thank you for your message. An agent will assist you shortly.</span>`;
+                chatInterface.insertBefore(botMsg, chatInterface.querySelector('.chat-input-area'));
+            }, 1000);
+            
+            input.value = '';
+        }
+        
+        function activateAgent(type, button) {
+            const card = button.closest('.agent-card');
+            
+            if (type === 'chat') {
+                card.innerHTML = `
+                    <div class="agent-header">
+                        <i class="fas fa-comments"></i>
+                        <h4>Chat Agent - Active</h4>
+                    </div>
+                    <div class="chat-interface">
+                        <div class="chat-message bot-msg">
+                            <i class="fas fa-robot"></i>
+                            <span>Hi! How can I help you?</span>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" placeholder="Type your message..." class="chat-input">
+                            <button class="send-chat-btn" onclick="sendChatMessage(this)">Send</button>
+                        </div>
+                        <button class="stop-btn" onclick="stopAgent('chat', this)">Stop</button>
+                    </div>
+                `;
+            } else if (type === 'inbound') {
+                card.innerHTML = `
+                    <div class="agent-header">
+                        <i class="fas fa-arrow-down"></i>
+                        <h4>Inbound Agent - Active</h4>
+                    </div>
+                    <p>AI Sales Assistant is ready to engage customers</p>
+                    <button class="stop-btn" onclick="stopAgent('inbound', this)">Stop</button>
+                `;
+                openSalesWindow();
+            } else if (type === 'outbound') {
+                card.innerHTML = `
+                    <div class="agent-header">
+                        <i class="fas fa-arrow-up"></i>
+                        <h4>Outbound Agent - Active</h4>
+                    </div>
+                    <p>AI Outbound Sales Agent is ready for proactive outreach</p>
+                    <button class="stop-btn" onclick="stopAgent('outbound', this)">Stop</button>
+                `;
+                openOutboundWindow();
+            } else if (type === 'call' || type === 'email') {
+                const fields = type === 'email' ? 
+                    `<input type="email" placeholder="Email Address">` : 
+                    `<input type="text" placeholder="Contact Number">`;
+                
+                card.innerHTML = `
+                    <div class="agent-header">
+                        <i class="fas fa-${getAgentIcon(type)}"></i>
+                        <h4>${type.charAt(0).toUpperCase() + type.slice(1)} Agent - Active</h4>
+                    </div>
+                    <div class="complaint-input">
+                        <textarea placeholder="Enter your complaints..." rows="3"></textarea>
+                        ${fields}
+                        <input type="text" placeholder="User ID">
+                        <button class="create-data-btn" onclick="submitAgentData('${type}', this)">Submit</button>
+                        <button class="stop-btn" onclick="stopAgent('${type}', this)">Stop</button>
+                    </div>
+                `;
+            }
+        }
+        
+        function getAgentIcon(type) {
+            const icons = {
+                'call': 'phone',
+                'email': 'envelope', 
+                'inbound': 'arrow-down',
+                'outbound': 'arrow-up'
+            };
+            return icons[type] || 'phone';
+        }
+        
+        function submitAgentData(type, button) {
+            const card = button.closest('.agent-card');
+            const complaint = card.querySelector('textarea').value.trim();
+            const contact = card.querySelector('input[type="text"], input[type="email"]').value.trim();
+            const userId = card.querySelector('input[placeholder="User ID"]').value.trim();
+            
+            if (!complaint || !contact || !userId) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            addToTable(type.toUpperCase(), complaint, contact, userId, type.toUpperCase());
+            alert(`${type.charAt(0).toUpperCase() + type.slice(1)} data submitted successfully!`);
+            
+            // Clear form
+            card.querySelector('textarea').value = '';
+            card.querySelectorAll('input').forEach(input => input.value = '');
+        }
+        
+        function stopAgent(type, button) {
+            const card = button.closest('.agent-card');
+            
+            const agentConfigs = {
+                'call': { icon: 'phone', title: 'Call Agent', desc: 'Handle customer queries via Phone Calls' },
+                'chat': { icon: 'comments', title: 'Chat Agent', desc: 'Handle customer queries via Live Chat' },
+                'email': { icon: 'envelope', title: 'Email Agent', desc: 'Handle customer queries via Email' },
+                'inbound': { icon: 'arrow-down', title: 'Inbound Agent', desc: 'Handle incoming customer requests' },
+                'outbound': { icon: 'arrow-up', title: 'Outbound Agent', desc: 'Proactive customer outreach' }
+            };
+            
+            const config = agentConfigs[type];
+            
+            card.innerHTML = `
+                <div class="agent-header">
+                    <i class="fas fa-${config.icon}"></i>
+                    <h4>${config.title}</h4>
+                </div>
+                <p>${config.desc}</p>
+                <button class="activate-btn" onclick="activateAgent('${type}', this)">Activate</button>
+            `;
+        }
+        
+        let recognition = null;
+        let isListening = false;
+        
+        function initVoiceRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    const input = document.getElementById('salesInput');
+                    if (input) input.value = transcript;
+                    animateAvatar('listening');
+                };
+                
+                recognition.onend = function() {
+                    isListening = false;
+                    const voiceBtn = document.getElementById('voiceBtn');
+                    if (voiceBtn) voiceBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                    animateAvatar('idle');
+                };
+            }
+        }
+        
+        function toggleVoiceRecognition() {
+            if (!recognition) {
+                alert('Voice recognition not supported in this browser');
+                return;
+            }
+            
+            if (isListening) {
+                recognition.stop();
+            } else {
+                recognition.start();
+                isListening = true;
+                document.getElementById('voiceBtn').innerHTML = '<i class="fas fa-stop"></i>';
+                animateAvatar('speaking');
+            }
+        }
+        
+        function animateAvatar(state) {
+            const avatar = document.getElementById('hostAvatar');
+            const indicator = document.getElementById('speakingIndicator');
+            
+            if (!avatar) return;
+            
+            if (state === 'speaking') {
+                avatar.classList.add('speaking');
+                if (indicator) indicator.classList.add('active');
+            } else if (state === 'listening') {
+                avatar.classList.add('listening');
+                if (indicator) indicator.classList.remove('active');
+            } else {
+                avatar.classList.remove('speaking', 'listening');
+                if (indicator) indicator.classList.remove('active');
+            }
+        }
+        
+        let lipSyncInterval;
+        let blinkInterval;
+        
+        function startRealisticLipSync() {
+            const mouthOpening = document.getElementById('mouthOpening');
+            const teeth = document.getElementById('avatarTeeth');
+            const upperLip = document.querySelector('.upper-lip');
+            const lowerLip = document.querySelector('.lower-lip');
+            
+            if (!mouthOpening) return;
+            
+            lipSyncInterval = setInterval(() => {
+                const openness = Math.random() * 0.8 + 0.2;
+                const width = Math.random() * 0.6 + 0.4;
+                
+                mouthOpening.style.transform = `scaleY(${openness}) scaleX(${width})`;
+                mouthOpening.style.opacity = openness > 0.5 ? '1' : '0.8';
+                
+                if (teeth) {
+                    teeth.style.opacity = openness > 0.6 ? '0.9' : '0';
+                }
+                
+                if (upperLip && lowerLip) {
+                    upperLip.style.transform = `translateY(${openness * 2}px)`;
+                    lowerLip.style.transform = `translateY(${-openness * 2}px)`;
+                }
+            }, 120);
+            
+            startBlinking();
+        }
+        
+        function stopRealisticLipSync() {
+            if (lipSyncInterval) {
+                clearInterval(lipSyncInterval);
+                const mouthOpening = document.getElementById('mouthOpening');
+                const teeth = document.getElementById('avatarTeeth');
+                const upperLip = document.querySelector('.upper-lip');
+                const lowerLip = document.querySelector('.lower-lip');
+                
+                if (mouthOpening) {
+                    mouthOpening.style.transform = 'scaleY(0.1) scaleX(1)';
+                    mouthOpening.style.opacity = '0.6';
+                }
+                if (teeth) teeth.style.opacity = '0';
+                if (upperLip) upperLip.style.transform = 'translateY(0)';
+                if (lowerLip) lowerLip.style.transform = 'translateY(0)';
+            }
+            stopBlinking();
+        }
+        
+        function startBlinking() {
+            const eyelids = document.querySelectorAll('.eyelid');
+            
+            blinkInterval = setInterval(() => {
+                eyelids.forEach(eyelid => {
+                    eyelid.style.transform = 'scaleY(0.1)';
+                    setTimeout(() => {
+                        eyelid.style.transform = 'scaleY(1)';
+                    }, 150);
+                });
+            }, 3000 + Math.random() * 2000);
+        }
+        
+        function stopBlinking() {
+            if (blinkInterval) {
+                clearInterval(blinkInterval);
+            }
+        }
+        
+        function openSalesWindow() {
+            const salesWindow = document.createElement('div');
+            salesWindow.className = 'sales-chat-window';
+            salesWindow.id = 'salesChatWindow';
+            
+            salesWindow.innerHTML = `
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <i class="fas fa-user-tie"></i>
+                        <span>AI Sales Assistant</span>
+                    </div>
+                    <div class="chat-controls">
+                        <span class="status-dot online"></span>
+                        <button class="close-sales-btn" onclick="closeSalesWindow()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="chat-container">
+                    <div class="chat-messages" id="salesMessages">
+                    </div>
+                    
+                    <div class="host-avatar">
+                        <div class="avatar-image" id="hostAvatar">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sales Agent" class="agent-photo">
+                            <div class="speaking-indicator" id="speakingIndicator"></div>
+                        </div>
+                        <div class="avatar-title">Sales Agent</div>
+                        <div class="avatar-subtitle">AI Assistant</div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-area">
+                    <div class="input-container">
+                        <input type="text" id="salesInput" placeholder="Type or speak your inquiry..." maxlength="300">
+                        <button class="voice-btn" onclick="toggleVoiceRecognition()" id="voiceBtn">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button id="salesSendBtn" class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(salesWindow);
+            salesWindow.classList.add('show');
+            
+            // Add event listeners
+            document.getElementById('salesSendBtn').onclick = handleSalesInquiry;
+            document.getElementById('salesInput').onkeypress = function(e) {
+                if (e.key === 'Enter') handleSalesInquiry();
+            };
+            
+            initVoiceRecognition();
+            
+            // Auto greeting with voice
+            setTimeout(() => {
+                const greeting = "Hi there! I'm Sarah, your sales assistant. I'm here to help you discover our amazing solutions. What brings you here today?";
+                addSalesMessage(greeting, 'bot');
+                animateAvatar('speaking');
+                speakResponse(greeting);
+                setTimeout(() => animateAvatar('idle'), 4000);
+            }, 1000);
+        }
+        
+        function closeSalesWindow() {
+            const salesWindow = document.getElementById('salesChatWindow');
+            if (salesWindow) {
+                salesWindow.remove();
+            }
+        }
+        
+        function openOutboundWindow() {
+            const outboundWindow = document.createElement('div');
+            outboundWindow.className = 'outbound-chat-window';
+            outboundWindow.id = 'outboundChatWindow';
+            
+            outboundWindow.innerHTML = `
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Outbound Sales Agent</span>
+                    </div>
+                    <div class="chat-controls">
+                        <span class="status-dot online"></span>
+                        <button class="close-outbound-btn" onclick="closeOutboundWindow()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="outbound-container">
+                    <div class="chat-messages" id="outboundMessages">
+                        <div class="message bot-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>Outbound Sales Agent ready! I'll help you make calls and track customer interactions. Select a contact to start calling.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="call-panel">
+                        <h4><i class="fas fa-phone"></i> Call Management</h4>
+                        <div class="contact-list">
+                            <div class="contact-item" onclick="selectContact('+1-555-0123', 'John Smith')">
+                                <span class="contact-name">John Smith</span>
+                                <span class="contact-number">+1-555-0123</span>
+                                <span class="contact-status pending">Pending</span>
+                            </div>
+                            <div class="contact-item" onclick="selectContact('+1-555-0456', 'Sarah Johnson')">
+                                <span class="contact-name">Sarah Johnson</span>
+                                <span class="contact-number">+1-555-0456</span>
+                                <span class="contact-status pending">Pending</span>
+                            </div>
+                            <div class="contact-item" onclick="selectContact('+1-555-0789', 'Mike Davis')">
+                                <span class="contact-name">Mike Davis</span>
+                                <span class="contact-number">+1-555-0789</span>
+                                <span class="contact-status pending">Pending</span>
+                            </div>
+                        </div>
+                        
+                        <div class="call-actions">
+                            <button class="call-btn" id="callBtn" onclick="makeCall()" disabled>
+                                <i class="fas fa-phone"></i> Call
+                            </button>
+                            <button class="email-btn" onclick="sendEmail()" disabled>
+                                <i class="fas fa-envelope"></i> Email
+                            </button>
+                        </div>
+                        
+                        <div class="call-status" id="callStatus">
+                            <h5>Call Status</h5>
+                            <div class="status-item">
+                                <span>Selected:</span>
+                                <span id="selectedContact">None</span>
+                            </div>
+                            <div class="status-item">
+                                <span>Call Status:</span>
+                                <span id="callStatusText">Ready</span>
+                            </div>
+                            <div class="status-item">
+                                <span>Email Status:</span>
+                                <span id="emailStatus">Not Sent</span>
+                            </div>
+                            <div class="status-item">
+                                <span>Interest Level:</span>
+                                <span id="interestLevel">Unknown</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(outboundWindow);
+            outboundWindow.classList.add('show');
+        }
+        
+        function closeOutboundWindow() {
+            const outboundWindow = document.getElementById('outboundChatWindow');
+            if (outboundWindow) {
+                outboundWindow.remove();
+            }
+        }
+        
+        let selectedContactData = null;
+        
+        function selectContact(number, name) {
+            selectedContactData = { number, name };
+            document.getElementById('selectedContact').textContent = `${name} (${number})`;
+            document.getElementById('callBtn').disabled = false;
+            document.querySelector('.email-btn').disabled = false;
+            
+            // Highlight selected contact
+            document.querySelectorAll('.contact-item').forEach(item => item.classList.remove('selected'));
+            event.target.closest('.contact-item').classList.add('selected');
+            
+            addOutboundMessage(`Selected contact: ${name} (${number})`, 'bot');
+        }
+        
+        function makeCall() {
+            if (!selectedContactData) return;
+            
+            const { name, number } = selectedContactData;
+            document.getElementById('callStatusText').textContent = 'Calling...';
+            
+            addOutboundMessage(`Calling ${name} at ${number}...`, 'bot');
+            
+            // Simulate call process
+            setTimeout(() => {
+                const outcome = 'Connected';
+                document.getElementById('callStatusText').textContent = outcome;
+                
+                addOutboundMessage(`Connected with ${name}! Call started.`, 'bot');
+                startCallInterface(name);
+                
+                updateContactStatus(number, 'connected');
+            }, 2000);
+        }
+        
+        function startCallInterface(name) {
+            const messagesContainer = document.getElementById('outboundMessages');
+            
+            // Add call interface
+            const callInterface = document.createElement('div');
+            callInterface.className = 'call-interface';
+            callInterface.innerHTML = `
+                <div class="call-header">
+                    <i class="fas fa-phone"></i> Live Call with ${name}
+                </div>
+                <div class="call-input-area">
+                    <input type="text" id="callInput" placeholder="Type or speak your response..." class="call-input">
+                    <button class="voice-call-btn" onclick="toggleCallVoice()" id="voiceCallBtn">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="send-call-btn" onclick="sendCallMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(callInterface);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Start conversation with correct name
+            setTimeout(() => {
+                const greeting = `Hi ${selectedContactData.name}, how are you? I am an agent from Waree. Good day!`;
+                addOutboundMessage(greeting, 'agent');
+                speakResponse(greeting);
+            }, 1000);
+            
+            initCallVoiceRecognition();
+        }
+        
+        let callRecognition = null;
+        let isCallListening = false;
+        let conversationStep = 0;
+        
+        function initCallVoiceRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                callRecognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                callRecognition.continuous = false;
+                callRecognition.interimResults = false;
+                callRecognition.lang = 'en-US';
+                
+                callRecognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    const input = document.getElementById('callInput');
+                    if (input) input.value = transcript;
+                };
+                
+                callRecognition.onend = function() {
+                    isCallListening = false;
+                    const voiceBtn = document.getElementById('voiceCallBtn');
+                    if (voiceBtn) voiceBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                };
+            }
+        }
+        
+        function toggleCallVoice() {
+            if (!callRecognition) {
+                alert('Voice recognition not supported');
+                return;
+            }
+            
+            if (isCallListening) {
+                callRecognition.stop();
+            } else {
+                callRecognition.start();
+                isCallListening = true;
+                document.getElementById('voiceCallBtn').innerHTML = '<i class="fas fa-stop"></i>';
+            }
+        }
+        
+        function sendCallMessage() {
+            const input = document.getElementById('callInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            addOutboundMessage(message, 'user');
+            input.value = '';
+            
+            // Process conversation
+            setTimeout(() => {
+                handleCallConversation(message);
+            }, 1000);
+        }
+        
+        async function handleCallConversation(userMessage) {
+            try {
+                const response = await getOutboundAIResponse(userMessage, selectedContactData.name);
+                addOutboundMessage(response, 'agent');
+                speakResponse(response);
+                
+                // Update interest level and add action buttons
+                if (userMessage.toLowerCase().includes('yes') || userMessage.toLowerCase().includes('interested')) {
+                    document.getElementById('interestLevel').textContent = 'High Interest';
+                    
+                    // Add trial link and meeting buttons
+                    setTimeout(() => {
+                        addOutboundMessage('📧 Free trial link: https://waree.com/trial-signup 🔗', 'bot');
+                        addOutboundMessage('Would you also like me to schedule a call with our product expert? <button onclick="showOutboundMeetingForm()" class="schedule-btn">Schedule Expert Call</button>', 'bot');
+                    }, 2000);
+                }
+            } catch (error) {
+                console.error('Outbound AI Error:', error);
+                const fallbackResponse = getFallbackOutboundResponse(userMessage);
+                addOutboundMessage(fallbackResponse, 'agent');
+                speakResponse(fallbackResponse);
+            }
+        }
+        
+        async function getOutboundAIResponse(message, contactName) {
+            const response = await fetch('/api/outbound-ai', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    message: message,
+                    contactName: contactName,
+                    conversationStep: conversationStep
+                })
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                return data.response;
+            } else {
+                throw new Error('AI service unavailable');
+            }
+        }
+        
+        function getFallbackOutboundResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+            
+            if (msg.includes('latest') || msg.includes('news') || msg.includes('explain')) {
+                return `Great question ${selectedContactData.name}! Our SmartCRM Pro 3.0 just launched with AI chatbots, AutoFlow Suite has voice commands, and DataInsight AI provides real-time analytics. I can send you a free 30-day trial link - interested?`;
+            } else if (msg.includes('yes') || msg.includes('interested') || msg.includes('sure')) {
+                setTimeout(() => {
+                    addOutboundMessage('📧 Free trial link: https://waree.com/trial-signup 🔗', 'bot');
+                    addOutboundMessage('Would you also like me to schedule a call with our product expert? <button onclick="showOutboundMeetingForm()" class="schedule-btn">Schedule Expert Call</button>', 'bot');
+                }, 2000);
+                return `Excellent ${selectedContactData.name}! Our solutions help businesses save 40% time with AI automation. I'll send you the trial link right now.`;
+            } else {
+                return `Thanks ${selectedContactData.name}! Our SmartCRM Pro 3.0, AutoFlow Suite, and DataInsight AI are helping 1000+ companies grow faster. Would you like to hear about our latest features?`;
+            }
+        }
+        
+        function showOutboundMeetingForm() {
+            const messagesContainer = document.getElementById('outboundMessages');
+            
+            const formDiv = document.createElement('div');
+            formDiv.className = 'meeting-form-container';
+            formDiv.innerHTML = `
+                <div class="meeting-form-header">
+                    <i class="fas fa-calendar"></i> Schedule Expert Consultation
+                </div>
+                <form id="outboundMeetingForm" class="meeting-form-fields">
+                    <input type="text" id="outboundName" placeholder="Your Name *" value="${selectedContactData.name}" required>
+                    <input type="email" id="outboundEmail" placeholder="Email Address *" required>
+                    <input type="text" id="outboundCompany" placeholder="Company Name">
+                    <select id="outboundInterest" required>
+                        <option value="">What interests you most?</option>
+                        <option value="SmartCRM Pro Demo">SmartCRM Pro Demo</option>
+                        <option value="AutoFlow Suite Demo">AutoFlow Suite Demo</option>
+                        <option value="DataInsight AI Demo">DataInsight AI Demo</option>
+                        <option value="Full Platform Demo">Full Platform Demo</option>
+                        <option value="Pricing Discussion">Pricing Discussion</option>
+                    </select>
+                    <select id="outboundTime" required>
+                        <option value="">Preferred Time</option>
+                        <option value="Tomorrow - Morning">Tomorrow - Morning</option>
+                        <option value="Tomorrow - Afternoon">Tomorrow - Afternoon</option>
+                        <option value="This Week - Morning">This Week - Morning</option>
+                        <option value="This Week - Afternoon">This Week - Afternoon</option>
+                    </select>
+                    <button type="submit" class="submit-meeting-btn">Schedule Call</button>
+                </form>
+            `;
+            
+            messagesContainer.appendChild(formDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Add form submit handler
+            document.getElementById('outboundMeetingForm').onsubmit = function(event) {
+                event.preventDefault();
+                
+                const formData = {
+                    name: document.getElementById('outboundName').value,
+                    email: document.getElementById('outboundEmail').value,
+                    company: document.getElementById('outboundCompany').value,
+                    interest: document.getElementById('outboundInterest').value,
+                    time: document.getElementById('outboundTime').value
+                };
+                
+                fetch('/api/save-meeting', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        addOutboundMessage('Perfect! Expert consultation scheduled. You\'ll receive a calendar invite within 30 minutes. Thank you for your time!', 'bot');
+                        document.querySelector('.meeting-form-container').style.opacity = '0.5';
+                        document.getElementById('interestLevel').textContent = 'Very High Interest';
+                        
+                        // Add to knowledge base
+                        addToKnowledgeBase({
+                            name: formData.name,
+                            email: formData.email,
+                            company: formData.company || 'Not provided',
+                            time: formData.time,
+                            channel: 'Outbound',
+                            interestLevel: 'Very High - ' + formData.interest
+                        });
+                    }
+                });
+            };
+        }
+        
+        function showMeetingForm() {
+            const messagesContainer = document.getElementById('outboundMessages');
+            
+            const formDiv = document.createElement('div');
+            formDiv.className = 'meeting-form';
+            formDiv.innerHTML = `
+                <div class="form-header">
+                    <i class="fas fa-calendar"></i> Meeting Details Form
+                </div>
+                <div class="form-fields">
+                    <input type="text" placeholder="Your Name" class="form-input">
+                    <input type="email" placeholder="Email Address" class="form-input">
+                    <input type="text" placeholder="Company Name" class="form-input">
+                    <select class="form-input">
+                        <option>Preferred Time</option>
+                        <option>Morning (9-12 PM)</option>
+                        <option>Afternoon (1-5 PM)</option>
+                        <option>Evening (6-8 PM)</option>
+                    </select>
+                    <button class="submit-form-btn" onclick="submitMeetingForm()">Submit</button>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(formDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function submitMeetingForm() {
+            const form = document.querySelector('.meeting-form');
+            const name = form.querySelector('input[placeholder="Your Name"]').value;
+            const email = form.querySelector('input[placeholder="Email Address"]').value;
+            const company = form.querySelector('input[placeholder="Company Name"]').value;
+            const time = form.querySelector('select').value;
+            
+            // Determine channel type
+            const channel = document.getElementById('outboundChatWindow') ? 'Outbound' : 'Inbound';
+            
+            // Add to knowledge base
+            addToKnowledgeBase({
+                name: name || 'Not provided',
+                email: email || 'Not provided', 
+                company: company || 'Not provided',
+                time: time || 'Not selected',
+                channel: channel,
+                interestLevel: 'Very Interested'
+            });
+            
+            addOutboundMessage('✅ Meeting scheduled successfully! You\'ll receive a calendar invite shortly.', 'bot');
+            form.style.opacity = '0.5';
+        }
+        
+        function endCall() {
+            const callInterface = document.querySelector('.call-interface');
+            if (callInterface) {
+                callInterface.style.opacity = '0.5';
+                callInterface.style.pointerEvents = 'none';
+            }
+            
+            addOutboundMessage('📞 Call ended. Customer showed high interest!', 'bot');
+            document.getElementById('callStatusText').textContent = 'Call Completed';
+        }
+        
+
+        
+        function sendEmail() {
+            if (!selectedContactData) return;
+            
+            const { name } = selectedContactData;
+            document.getElementById('emailStatus').textContent = 'Sending...';
+            
+            setTimeout(() => {
+                document.getElementById('emailStatus').textContent = 'Sent';
+                addOutboundMessage(`Product brochure email sent to ${name}`, 'bot');
+                
+                setTimeout(() => {
+                    const clicked = Math.random() > 0.5;
+                    if (clicked) {
+                        document.getElementById('emailStatus').textContent = 'Sent & Clicked';
+                        addOutboundMessage(`${name} clicked the email link! High interest detected.`, 'bot');
+                        document.getElementById('interestLevel').textContent = 'High Interest';
+                    }
+                }, 2000);
+            }, 1500);
+        }
+        
+        function updateContactStatus(number, status) {
+            const contactItem = document.querySelector(`[onclick*="${number}"]`);
+            if (contactItem) {
+                const statusSpan = contactItem.querySelector('.contact-status');
+                statusSpan.textContent = status;
+                statusSpan.className = `contact-status ${status}`;
+            }
+        }
+        
+        function addOutboundMessage(text, sender) {
+            const messagesContainer = document.getElementById('outboundMessages');
+            const messageDiv = document.createElement('div');
+            
+            const isBot = sender === 'bot';
+            const icon = sender === 'agent' ? 'fa-user-tie' : 'fa-headset';
+            
+            messageDiv.className = `message ${isBot ? 'bot-message' : 'user-message'}`;
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas ${icon}"></i>
+                </div>
+                <div class="message-content">
+                    <p>${text}</p>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        async function handleSalesInquiry() {
+            const input = document.getElementById('salesInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            const messagesContainer = document.getElementById('salesMessages');
+            
+            // Add customer message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user-message';
+            userMsg.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="message-content">
+                    <p>${message}</p>
+                </div>
+            `;
+            messagesContainer.appendChild(userMsg);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Show typing and speaking animation
+            showSalesTyping();
+            animateAvatar('speaking');
+            
+            try {
+                // Get AI response from Gemini
+                const response = await getAISalesResponse(message);
+                
+                hideSalesTyping();
+                
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot-message';
+                botMsg.innerHTML = `
+                    <div class="message-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>${response}</p>
+                    </div>
+                `;
+                messagesContainer.appendChild(botMsg);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Speak the response
+                speakResponse(response);
+                
+                setTimeout(() => animateAvatar('idle'), 3000);
+            } catch (error) {
+                console.error('AI Error:', error);
+                hideSalesTyping();
+                const fallbackResponse = getSalesResponse(message);
+                
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot-message';
+                botMsg.innerHTML = `
+                    <div class="message-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>${fallbackResponse}</p>
+                    </div>
+                `;
+                messagesContainer.appendChild(botMsg);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                speakResponse(fallbackResponse);
+                setTimeout(() => animateAvatar('idle'), 3000);
+            }
+            
+            input.value = '';
+        }
+        
+        function addSalesMessage(text, sender) {
+            const messagesContainer = document.getElementById('salesMessages');
+            const messageDiv = document.createElement('div');
+            
+            const isBot = sender === 'bot';
+            const icon = isBot ? 'fa-user-tie' : 'fa-user';
+            
+            messageDiv.className = `message ${isBot ? 'bot-message' : 'user-message'}`;
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas ${icon}"></i>
+                </div>
+                <div class="message-content">
+                    <p>${text}</p>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        async function getAISalesResponse(message) {
+            console.log('Calling AI with message:', message);
+            
+            const response = await fetch('/api/sales-ai', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            });
+            
+            console.log('AI Response status:', response.status);
+            
+            if (response.ok) {
+                const data = await response.json();
+                console.log('AI Response data:', data);
+                return data.response;
+            } else {
+                const errorText = await response.text();
+                console.error('AI Error response:', errorText);
+                throw new Error('AI service unavailable: ' + errorText);
+            }
+        }
+        
+        function showSalesTyping() {
+            const messagesContainer = document.getElementById('salesMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing-indicator';
+            typingDiv.id = 'salesTyping';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="message-content">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function hideSalesTyping() {
+            const typingIndicator = document.getElementById('salesTyping');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+        
+        function getSalesResponse(message) {
+            const msg = message.toLowerCase();
+            
+            if (msg.includes('price') || msg.includes('cost') || msg.includes('budget')) {
+                return "Great question! Our premium packages start at just $99/month with amazing ROI. We have special discounts this month - up to 30% off! Would you like me to create a custom quote for you?";
+            } else if (msg.includes('service') || msg.includes('product') || msg.includes('launch')) {
+                return "Excellent! We offer cutting-edge solutions that have helped 500+ companies increase efficiency by 40%. Our AI-powered platform is exactly what you need. Shall I schedule a free demo for you?";
+            } else if (msg.includes('demo') || msg.includes('trial') || msg.includes('yes please') || msg.includes('book') || msg.includes('schedule')) {
+                return "Perfect! I'm booking a Teams call for you with Sharminda, our senior consultant. You'll receive a calendar invite within 5 minutes. The demo will showcase our latest AI features and custom solutions for your business needs.";
+            } else if (msg.includes('competitor') || msg.includes('compare')) {
+                return "Smart to compare! Our clients consistently rate us 40% better than competitors. We offer better pricing, 24/7 support, and guaranteed results. Let me show you why we're the market leader!";
+            } else if (msg.includes('teams') || msg.includes('call') || msg.includes('sharminda')) {
+                return "Absolutely! I'm connecting you with Sharminda right now. He's our top sales advisor and will provide you with a personalized consultation. Expect his call in the next 2-3 minutes. He'll walk you through our premium solutions!";
+            } else {
+                return "I understand your needs perfectly! Based on what you've shared, I have the ideal solution that will save you time and money. Our success rate is 95% - let me connect you with our specialist for a personalized consultation. Are you available for a quick 15-minute call?";
+            }
+        }
+        
+        function speakResponse(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.9;
+                utterance.pitch = 1;
+                utterance.volume = 0.8;
+                speechSynthesis.speak(utterance);
+            }
+        }
+        
+        function openSentimentModal() {
+            document.getElementById('sentimentModal').classList.add('show');
+        }
+        
+        function closeSentimentModal() {
+            document.getElementById('sentimentModal').classList.remove('show');
+            document.getElementById('dataContent').style.display = 'none';
+        }
+        
+        function selectDataSource(source) {
+            const dataContent = document.getElementById('dataContent');
+            dataContent.style.display = 'block';
+            
+            if (source === 'current') {
+                loadCurrentDatabaseAnalysis();
+            } else {
+                loadExternalDataUpload();
+            }
+        }
+        
+        function loadCurrentDatabaseAnalysis() {
+            const dataContent = document.getElementById('dataContent');
+            dataContent.innerHTML = `
+                <div class="analysis-section">
+                    <h4>Current Database Analysis</h4>
+                    <div class="chart-options">
+                        <button class="chart-btn" onclick="showChart('rating')">
+                            <i class="fas fa-star"></i> Rating Analysis
+                        </button>
+                        <button class="chart-btn" onclick="showChart('word')">
+                            <i class="fas fa-comments"></i> Word Analysis
+                        </button>
+                        <button class="chart-btn" onclick="showChart('trend')">
+                            <i class="fas fa-chart-line"></i> Department Trends
+                        </button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="analysisChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function loadExternalDataUpload() {
+            const dataContent = document.getElementById('dataContent');
+            dataContent.innerHTML = `
+                <div class="upload-section">
+                    <h4>Upload External Data</h4>
+                    <div class="upload-area">
+                        <input type="file" id="fileUpload" accept=".csv,.xlsx,.xls" onchange="handleFileUpload(event)">
+                        <div class="upload-placeholder">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Choose CSV or Excel file</p>
+                            <small>Supported formats: .csv, .xlsx, .xls</small>
+                        </div>
+                    </div>
+                    <div id="uploadedDataAnalysis" style="display: none;">
+                        <div class="chart-options">
+                            <button class="chart-btn" onclick="showUploadedChart('column1')">
+                                <i class="fas fa-chart-bar"></i> Column Analysis
+                            </button>
+                            <button class="chart-btn" onclick="showUploadedChart('distribution')">
+                                <i class="fas fa-chart-pie"></i> Distribution
+                            </button>
+                            <button class="chart-btn" onclick="showUploadedChart('trends')">
+                                <i class="fas fa-chart-line"></i> Trends
+                            </button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="uploadChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        async function showChart(type) {
+            const ctx = document.getElementById('analysisChart').getContext('2d');
+            
+            try {
+                const response = await fetch('/api/analytics/' + type);
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (window.currentChart) {
+                        window.currentChart.destroy();
+                    }
+                    window.currentChart = new Chart(ctx, {
+                        type: data.chartType,
+                        data: data.chartData,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: data.title
+                                }
+                            }
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading chart:', error);
+            }
+        }
+        
+        let uploadedData = [];
+        
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const csv = e.target.result;
+                    uploadedData = parseCSV(csv);
+                    document.getElementById('uploadedDataAnalysis').style.display = 'block';
+                    updateUploadedChartButtons();
+                };
+                reader.readAsText(file);
+            }
+        }
+        
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            const data = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (lines[i].trim()) {
+                    const values = lines[i].split(',').map(v => v.trim());
+                    const row = {};
+                    headers.forEach((header, index) => {
+                        row[header] = values[index] || '';
+                    });
+                    data.push(row);
+                }
+            }
+            return { headers, data };
+        }
+        
+        function updateUploadedChartButtons() {
+            const chartOptions = document.querySelector('#uploadedDataAnalysis .chart-options');
+            const headers = uploadedData.headers;
+            
+            chartOptions.innerHTML = '';
+            
+            if (headers.includes('satisfaction_rating')) {
+                chartOptions.innerHTML += `<button class="chart-btn" onclick="showUploadedChart('rating')"><i class="fas fa-star"></i> Rating Analysis</button>`;
+            }
+            if (headers.includes('challenge')) {
+                chartOptions.innerHTML += `<button class="chart-btn" onclick="showUploadedChart('word')"><i class="fas fa-comments"></i> Word Analysis</button>`;
+            }
+            if (headers.includes('department')) {
+                chartOptions.innerHTML += `<button class="chart-btn" onclick="showUploadedChart('trend')"><i class="fas fa-chart-line"></i> Department Trends</button>`;
+            }
+        }
+        
+        let currentChart = null;
+        
+        function showUploadedChart(type) {
+            const ctx = document.getElementById('uploadChart').getContext('2d');
+            
+            // Destroy existing chart
+            if (currentChart) {
+                currentChart.destroy();
+            }
+            
+            let chartConfig = {};
+            
+            if (type === 'rating') {
+                const ratingCounts = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+                uploadedData.data.forEach(row => {
+                    const rating = parseInt(row.satisfaction_rating);
+                    if (rating >= 1 && rating <= 5) {
+                        ratingCounts[rating]++;
+                    }
+                });
+                
+                chartConfig = {
+                    type: 'bar',
+                    data: {
+                        labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+                        datasets: [{
+                            label: 'Count',
+                            data: Object.values(ratingCounts),
+                            backgroundColor: ['#ef4444', '#f97316', '#eab308', '#22c55e', '#10b981']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { title: { display: true, text: 'Rating Analysis' } }
+                    }
+                };
+            } else if (type === 'word') {
+                const unsatisfiedWords = ['crash', 'freeze', 'slow', 'error', 'bug', 'fail', 'problem', 'issue', 'bad', 'terrible'];
+                const satisfiedWords = ['excellent', 'great', 'good', 'perfect', 'smooth', 'amazing', 'wonderful', 'fantastic'];
+                
+                const sentimentCounts = {'Unsatisfied': 0, 'Neutral': 0, 'Satisfied': 0};
+                
+                uploadedData.data.forEach(row => {
+                    const challengeText = (row.challenge || '').toLowerCase();
+                    
+                    if (unsatisfiedWords.some(word => challengeText.includes(word))) {
+                        sentimentCounts['Unsatisfied']++;
+                    } else if (satisfiedWords.some(word => challengeText.includes(word))) {
+                        sentimentCounts['Satisfied']++;
+                    } else {
+                        sentimentCounts['Neutral']++;
+                    }
+                });
+                
+                chartConfig = {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(sentimentCounts),
+                        datasets: [{
+                            data: Object.values(sentimentCounts),
+                            backgroundColor: ['#ef4444', '#eab308', '#10b981']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { title: { display: true, text: 'Word-based Sentiment Analysis' } }
+                    }
+                };
+            } else if (type === 'trend') {
+                const deptCounts = {};
+                uploadedData.data.forEach(row => {
+                    const dept = row.department;
+                    if (dept) {
+                        deptCounts[dept] = (deptCounts[dept] || 0) + 1;
+                    }
+                });
+                
+                chartConfig = {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(deptCounts),
+                        datasets: [{
+                            label: 'Issues',
+                            data: Object.values(deptCounts),
+                            backgroundColor: ['#3b82f6', '#10b981', '#f97316', '#ef4444', '#8b5cf6']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { title: { display: true, text: 'Department Trends' } }
+                    }
+                };
+            }
+            
+            if (chartConfig.type) {
+                currentChart = new Chart(ctx, chartConfig);
+            }
+        }
+        
+        function openSalesAgentsModal() {
+            document.getElementById('salesAgentsModal').classList.add('show');
+        }
+        
+        function closeSalesAgentsModal() {
+            document.getElementById('salesAgentsModal').classList.remove('show');
+        }
+        
+        let salesKnowledgeBase = [];
+        
+        function addToKnowledgeBase(data) {
+            const id = 'KB-' + String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+            const timestamp = new Date().toLocaleString();
+            
+            const entry = {
+                id: id,
+                ...data,
+                timestamp: timestamp
+            };
+            
+            salesKnowledgeBase.push(entry);
+            updateKnowledgeBaseTable();
+        }
+        
+        function updateKnowledgeBaseTable() {
+            const tableBody = document.getElementById('knowledgeBaseTable');
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+            
+            salesKnowledgeBase.forEach(entry => {
+                const row = `
+                    <tr>
+                        <td>${entry.id}</td>
+                        <td><span class="channel-badge ${entry.channel.toLowerCase()}">${entry.channel.toUpperCase()}</span></td>
+                        <td>${entry.name}</td>
+                        <td>${entry.email}</td>
+                        <td>${entry.company}</td>
+                        <td>${entry.time}</td>
+                        <td><span class="interest-badge high">${entry.interestLevel}</span></td>
+                        <td>${entry.timestamp}</td>
+                        <td><button class="view-btn" onclick="viewKnowledgeEntry('${entry.id}')">View</button></td>
+                    </tr>
+                `;
+                tableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+        
+        function clearKnowledgeBase() {
+            if (confirm('Are you sure you want to clear all knowledge base entries?')) {
+                salesKnowledgeBase = [];
+                updateKnowledgeBaseTable();
+            }
+        }
+        
+        function viewKnowledgeEntry(id) {
+            const entry = salesKnowledgeBase.find(e => e.id === id);
+            if (entry) {
+                alert(`Knowledge Base Entry: ${id}\n\nChannel: ${entry.channel}\nName: ${entry.name}\nEmail: ${entry.email}\nCompany: ${entry.company}\nPreferred Time: ${entry.time}\nInterest Level: ${entry.interestLevel}\nTimestamp: ${entry.timestamp}`);
+            }
+        }
+        
+        function showMeetingForm() {
+            const messagesContainer = document.getElementById('salesMessages');
+            
+            const formDiv = document.createElement('div');
+            formDiv.className = 'meeting-form-container';
+            formDiv.innerHTML = `
+                <div class="meeting-form-header">
+                    <i class="fas fa-calendar"></i> Schedule Your Meeting
+                </div>
+                <form id="meetingForm" class="meeting-form-fields">
+                    <input type="text" id="meetingName" placeholder="Your Name *" required>
+                    <input type="email" id="meetingEmail" placeholder="Email Address *" required>
+                    <input type="text" id="meetingCompany" placeholder="Company Name">
+                    <input type="tel" id="meetingPhone" placeholder="Phone Number">
+                    <select id="meetingInterest" required>
+                        <option value="">What interests you most?</option>
+                        <option value="CRM Demo">CRM Demo</option>
+                        <option value="Sales Automation">Sales Automation</option>
+                        <option value="AI Analytics">AI Analytics</option>
+                        <option value="Pricing Info">Pricing Information</option>
+                        <option value="General Demo">General Demo</option>
+                    </select>
+                    <select id="meetingTime" required>
+                        <option value="">Preferred Time</option>
+                        <option value="This Week - Morning">This Week - Morning</option>
+                        <option value="This Week - Afternoon">This Week - Afternoon</option>
+                        <option value="Next Week - Morning">Next Week - Morning</option>
+                        <option value="Next Week - Afternoon">Next Week - Afternoon</option>
+                    </select>
+                    <button type="submit" class="submit-meeting-btn">Schedule Meeting</button>
+                </form>
+            `;
+            
+            messagesContainer.appendChild(formDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Add form submit handler
+            document.getElementById('meetingForm').onsubmit = submitMeetingForm;
+        }
+        
+        function submitMeetingForm(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('meetingName').value,
+                email: document.getElementById('meetingEmail').value,
+                company: document.getElementById('meetingCompany').value,
+                phone: document.getElementById('meetingPhone').value,
+                interest: document.getElementById('meetingInterest').value,
+                time: document.getElementById('meetingTime').value
+            };
+            
+            fetch('/api/save-meeting', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    addSalesMessage('Perfect! Your meeting has been scheduled. Our expert will contact you within 24 hours to confirm the details. Thank you for your interest!', 'bot');
+                    document.querySelector('.meeting-form-container').style.opacity = '0.5';
+                    document.querySelector('.meeting-form-container').style.pointerEvents = 'none';
+                    
+                    // Add to knowledge base
+                    addToKnowledgeBase({
+                        name: formData.name,
+                        email: formData.email,
+                        company: formData.company || 'Not provided',
+                        time: formData.time,
+                        channel: 'Inbound',
+                        interestLevel: 'High Interest - ' + formData.interest
+                    });
+                } else {
+                    alert('Error scheduling meeting. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error scheduling meeting. Please try again.');
+            });
+        }
+        
+        function closeChatbot() {
+            document.getElementById('chatbotFeedbackModal').classList.add('show');
+        }
+        
+        function closeChatbotFeedback() {
+            document.getElementById('chatbotFeedbackModal').classList.remove('show');
+        }
+        
+        let chatbotRating = 0;
+        
+        function setRating(rating) {
+            chatbotRating = rating;
+            const stars = document.querySelectorAll('.rating-stars .star');
+            stars.forEach((star, index) => {
+                star.style.color = index < rating ? '#ffd700' : '#ccc';
+            });
+        }
+        
+        function submitChatbotFeedback(event) {
+            event.preventDefault();
+            const feedback = {
+                rating: chatbotRating,
+                text: document.getElementById('chatbotFeedbackText').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            fetch('/api/chatbot-feedback', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(feedback)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Thank you for your feedback!');
+                closeChatbotFeedback();
+                document.getElementById('chatWindow').style.display = 'none';
+            })
+            .catch(() => {
+                alert('Thank you for your feedback!');
+                closeChatbotFeedback();
+                document.getElementById('chatWindow').style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+name,email,challenge,satisfaction_rating,department,created_at
+John Smith,john@company.com,Cloud server keeps crashing and losing data,2,cloud,2024-01-15
+Sarah Johnson,sarah@tech.com,Software application freezing during important tasks,1,software,2024-01-14
+Mike Davis,mike@corp.com,Hardware device not responding properly,3,hardware,2024-01-13
+Lisa Chen,lisa@business.com,Security breach concerns with login system,1,security,2024-01-12
+Tom Wilson,tom@startup.com,Service response time is extremely slow,2,service,2024-01-11
+Emma Brown,emma@agency.com,Cloud storage sync issues affecting workflow,3,cloud,2024-01-10
+Alex Garcia,alex@firm.com,Software bugs causing system errors,1,software,2024-01-09
+Rachel White,rachel@group.com,IT team delayed hardware replacement,2,hardware,2024-01-08
+David Lee,david@solutions.com,Security team needs better threat detection,4,security,2024-01-07
+Jennifer Taylor,jen@consulting.com,Slow service affecting client meetings,2,service,2024-01-06
+Mark Anderson,mark@enterprise.com,Excellent cloud performance and reliability,5,cloud,2024-01-05
+Kelly Martinez,kelly@digital.com,Great software update with new features,4,software,2024-01-04
+Chris Thompson,chris@tech.com,Hardware upgrade went smoothly,4,hardware,2024-01-03
+Amanda Rodriguez,amanda@corp.com,Security measures are working perfectly,5,security,2024-01-02
+Brian Clark,brian@company.com,Service quality has improved significantly,4,service,2024-01-01
+Jane Doe,jane@test.com,Software crash during presentation,1,software,2024-01-16
+Bob Wilson,bob@corp.com,Cloud backup failed completely,1,cloud,2024-01-17
+Alice Brown,alice@tech.com,Software works perfectly fine,5,software,2024-01-18
+Diana Smith,diana@company.com,Service team was amazing and helpful,5,service,2024-01-20
+Evan Johnson,evan@startup.com,Software performance is excellent,4,software,2024-01-21
+Fiona Lee,fiona@agency.com,Cloud system running smoothly,4,cloud,2024-01-22
+George Taylor,george@business.com,Software application terrible experience,1,software,2024-01-23
+Helen Garcia,helen@solutions.com,Service support was wonderful,5,service,2024-01-24
+Ian Martinez,ian@digital.com,Software update caused major problems,2,software,2024-01-25
+Julia White,julia@group.com,Cloud storage works great,4,cloud,2024-01-26
+Kevin Rodriguez,kevin@enterprise.com,Software interface is fantastic,5,software,2024-01-27
+Linda Clark,linda@consulting.com,Service response was slow but acceptable,3,service,2024-01-28
+Michael Anderson,michael@tech.com,Software bugs need immediate fixing,2,software,2024-01-29
+Nancy Thompson,nancy@corp.com,Cloud performance has been amazing,5,cloud,2024-01-30
+Peter Jones,peter@company.com,Software system error causing delays,1,software,2024-02-01
+Quinn Davis,quinn@tech.com,Software application running smooth,4,software,2024-02-02
+Robert Lee,robert@firm.com,Software freeze during important work,2,software,2024-02-03
+Steve Wilson,steve@startup.com,Software interface is great,5,software,2024-02-04
+Tina Brown,tina@agency.com,Software performance terrible,1,software,2024-02-05
+Uma Garcia,uma@solutions.com,Software works excellent,5,software,2024-02-06
+Victor Martinez,victor@digital.com,Software has some issues,3,software,2024-02-07
+Wendy White,wendy@group.com,Software update is wonderful,4,software,2024-02-08
+Xavier Rodriguez,xavier@enterprise.com,Software crash problem,2,software,2024-02-09
+Yara Clark,yara@consulting.com,Software running perfectly,5,software,2024-02-10

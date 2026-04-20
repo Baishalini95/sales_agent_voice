@@ -1,0 +1,14 @@
+Ticket ID,Name,Email,Reason,Priority,Status,Assigned To,Created,Updated
+TKT-50A03BFB,Frank Thompson,frank.t@solutions.com,API integration documentation missing,Medium,Open,2025-09-07 13:46:54,2025-09-07 13:46:54,SME Team
+TKT-60981849,Grace Kim,grace.kim@agency.com,Performance optimization request,Low,Open,2025-09-07 13:46:54,2025-09-07 13:46:54,Cloud Team
+TKT-1BCBBE4A,Henry Adams,henry.adams@enterprise.com,Security vulnerability report,High,In Progress,2025-09-07 13:46:54,2025-09-07 13:46:54,Security Team
+TKT-17FC9C25,Iris Johnson,iris.johnson@tech.com,Data migration assistance needed,Medium,Resolved,2025-09-07 13:46:54,2025-09-07 13:46:54,Cloud Team
+TKT-DD250F85,Jack Wilson,jack.wilson@startup.com,Account access permissions issue,High,Open,2025-09-07 13:46:54,2025-09-07 13:46:54,Security Team
+TKT-D759150B,Alice Cooper,alice.cooper@company.com,System login issues - unable to access dashboard,High,In Progress,2025-09-07 13:46:53,2025-09-07 13:46:53,Security Team
+TKT-7B5D9D4B,Bob Martinez,bob.martinez@tech.com,Request for new feature implementation,Medium,Open,2025-09-07 13:46:53,2025-09-07 13:46:53,SME Team
+TKT-EC783D7D,Carol White,carol.white@startup.com,Database connection timeout errors,Critical,Resolved,2025-09-07 13:46:53,2025-09-07 13:46:53,Cloud Team
+TKT-11370A6A,Daniel Green,daniel.green@corp.com,General inquiry about service pricing,Low,Closed,2025-09-07 13:46:53,2025-09-07 13:46:53,Unassigned
+TKT-F2EEDDDD,Eva Rodriguez,eva.rodriguez@dev.com,Server downtime affecting production,Critical,In Progress,2025-09-07 13:46:53,2025-09-07 13:46:54,Emergency Team
+TKT-B8BE8730,dilesh,dilesh@gmail.com,support issues,High,Open,2025-08-13 13:52:37,2025-08-13 13:57:05,Security Team
+TKT-DA51A5A6,shalini,baishalini.sahu@softtek.com,support fast,Critical,Open,2025-08-13 12:46:45,2025-08-13 12:46:45,Unassigned
+TKT-FB5F0340,shalini,baishalini.sahu@softtek.com,support issue,Low,Open,2025-08-13 12:33:42,2025-08-13 12:45:03,Security Team
